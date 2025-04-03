@@ -7,6 +7,7 @@ use App\Http\Requests\DecodeUrlRequest;
 use App\Http\Requests\EncodeUrlRequest;
 use App\Http\Resources\UrlResource;
 use App\Services\UrlShortenerService;
+use App\Exceptions\UrlShortenerException;
 
 class UrlController extends Controller
 {

@@ -35,7 +35,7 @@ A high-performance URL shortening service built with Laravel, implementing SOLID
     php artisan migrate
 
 
-    Encode a URL
+   ###  Encode a URL
 POST /api/v1/encode     
 
 Request:
@@ -45,7 +45,7 @@ Request:
 }
 
 
-Success Response (200):
+### Success Response (200):
 
 {
   "data": {
@@ -54,3 +54,59 @@ Success Response (200):
     "created_at": "2024-05-20T12:00:00Z"
   }
 }
+
+### Decode a Short URL
+
+POST /api/v1/decode
+Request
+{
+  "short_url": "http://yourdomain.com/abc123"
+}
+
+
+### Success Response (200):
+
+{
+  "data": {
+    "original_url": "https://example.com/very/long/url",
+    "short_url": "http://yourdomain.com/abc123"
+  }
+}
+
+
+## Development Setup
+
+### Running Tests
+
+php artisan test
+
+### Code Style Fixing
+composer run lint
+composer run fix
+
+### Architecture
+#### Core Components
+
+DTOs: app/DTOs/UrlDTO.php - Data transfer objects
+
+Services: app/Services/UrlShortenerService.php - Business logic
+
+Exceptions: app/Exceptions/UrlShortenerException.php - Custom exceptions
+
+Resources: app/Http/Resources/UrlResource.php - API response formatting
+
+
+
+### Deployment
+#### Production Requirements
+
+- Queue worker for async jobs
+
+- Redis for caching
+
+- Database backups
+
+Deployment Steps
+Configure production .env
+
+Run migrations:
